@@ -7,6 +7,7 @@ import { User } from './user.entity';
 export class UsersService {
     constructor(@InjectRepository(User) private repo: Repository<User>) { }
 
+
     async find(email: string) {
         const user = await this.repo.find({ email })
         return user
