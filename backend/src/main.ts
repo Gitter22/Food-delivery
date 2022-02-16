@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The food delivery app')
     .setVersion('1.0')
     .addTag('zomato')
+    .addBearerAuth()
     .build();
   const options: SwaggerDocumentOptions = {
     operationIdFactory: (
