@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The food delivery app')
     .setVersion('1.0')
     .addTag('zomato')
+    .addBearerAuth()
     .build();
   const options: SwaggerDocumentOptions = {
     operationIdFactory: (
@@ -19,7 +20,9 @@ async function bootstrap() {
   };
   const document = SwaggerModule.createDocument(app, config, options);
   SwaggerModule.setup('api', app, document);
-
+  app.enableCors({
+    origin: 'https://localhost:3001/'
+  })
   await app.listen(3000);
 }
 bootstrap();
