@@ -17,7 +17,10 @@ export class AuthService {
             throw new BadRequestException('email is aleady in use')
         }
         const newUser = await this.usersService.create(name, email, password, address)
-        return newUser
+        const payload = { name: newUser.name, sub: newUser.id, isAdmin: newUser.isAdmin, email: newUser.email };
+        return {
+            access_token: this.jwtService.sign(payload),
+        };
     }
     async validateUser(email: string, enteredPassword: string) {
         const [user] = await this.usersService.find(email)
